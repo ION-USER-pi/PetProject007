@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>petproject007</title>
+  <style>
+    :root {
+      --primary: #4a90e2;
+      --secondary: #f8f9fa;
+      --accent: #ff6b6b;
+      --text: #333;
+      --light-text: #777;
+      --border: #e0e0e0;
+      --white: #fff;
+      --gradient-start: #4a90e2;
+      --gradient-end: #81c3fd;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background-color: var(--white);
+    }
+    
+    h1, h2, h3 {
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+    }
+    
+    h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+    }
+    
+    h3 {
+      font-size: 1.3rem;
+      margin-top: 1.5rem;
+    }
+    
+    p {
+      margin-bottom: 1rem;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    .header {
+      background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+      color: var(--white);
+      padding: 2rem 0;
+      text-align: center;
+    }
+    
+    .nav {
+      background-color: var(--white);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: var(--primary);
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 1.5rem;
+    }
+    
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--text);
+    }
+    
+    .hero {
+      padding: 4rem 0;
+      text-align: center;
+      background-color: var(--secondary);
+    }
+    
+    .hero h1 {
+      margin-bottom: 1rem;
+    }
+    
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--light-text);
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+    
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 0.8rem 1.5rem;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    
+    .btn:hover {
+      background-color: var(--gradient-end);
+    }
+    
+    .features {
+      padding: 4rem 0;
+      background-color: var(--white);
+    }
+    
+    .section-title {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .feature-card {
+      background-color: var(--secondary);
+      border-radius: 10px;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    
+    .steps {
+      padding: 4rem 0;
+      background-color: var(--secondary);
+    }
+    
+    .step-container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .step-card {
+      display: flex;
+      gap: 2rem;
+      background-color: var(--white);
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    
+    .step-number {
+      font-size: 2rem;
+      font-weight: bold;
+      color: var(--primary);
+      min-width: 50px;
+    }
+    
+    .step-content {
+      flex: 1;
+    }
+    
+    .tips {
+      padding: 4rem 0;
+    }
+    
+    .tip-card {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .tip-title {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .tip-icon {
+      color: var(--accent);
+      margin-right: 0.5rem;
+    }
+    
+    .faq {
+      padding: 4rem 0;
+      background-color: var(--secondary);
+    }
+    
+    .faq-item {
+      background-color: var(--white);
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      padding: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .faq-question {
+      font-weight: 600;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-bottom: 0.5rem;
+    }
+    
+    .faq-answer {
+      color: var(--light-text);
+    }
+    
+    .cta {
+      padding: 4rem 0;
+      text-align: center;
+      background: linear-gradient(to right, var(--gradient-start), var(--gradient-end));
+      color: var(--white);
+    }
+    
+    .cta h2 {
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    
+    .cta-btn {
+      background-color: var(--white);
+      color: var(--primary);
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+    }
+    
+    .cta-btn:hover {
+      background-color: var(--secondary);
+    }
+    
+    .footer {
+      background-color: var(--text);
+      color: var(--white);
+      padding: 3rem 0;
+    }
+    
+    .footer-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+    }
+    
+    .footer-section h3 {
+      color: var(--white);
+      margin-bottom: 1.5rem;
+    }
+    
+    .footer-links {
+      list-style: none;
+    }
+    
+    .footer-links li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer-links a {
+      color: var(--light-text);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-links a:hover {
+      color: var(--white);
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    
+    .social-icon {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background-color: var(--light-text);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background-color 0.3s;
+    }
+    
+    .social-icon:hover {
+      background-color: var(--primary);
+    }
+    
+    .copyright {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 1rem;
+      border-top: 1px solid var(--light-text);
+      color: var(--light-text);
+    }
+    
+    @media (max-width: 768px) {
+      .nav-container {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      
+      .nav-links.active {
+        display: flex;
+      }
+      
+      .nav-links li {
+        margin: 0.5rem 0;
+        margin-left: 0;
+      }
+      
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        right: 1rem;
+        top: 1rem;
+      }
+      
+      .step-card {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      
+      .hero h1 {
+        font-size: 2rem;
+      }
+      
+      .hero p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1>Developing a Wix-Based Website</h1>
+      <p>Your complete guide to creating stunning websites with Wix</p>
+    </div>
+  </header>
+  
+  <nav class="nav">
+    <div class="container nav-container">
+      <a href="#" class="logo">WixGuide</a>
+      <button class="mobile-menu-btn">☰</button>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#steps">Steps</a></li>
+        <li><a href="#tips">Tips & Tricks</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <section class="hero">
+    <div class="container">
+      <h1>Create Your Dream Website Without Coding</h1>
+      <p>Learn how to harness the full power of Wix's drag-and-drop editor, AI tools, and extensive app marketplace to build professional websites for any purpose.</p>
+      <a href="#steps" class="btn">Get Started</a>
+    </div>
+  </section>
+  
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-title">
+        <h2>Why Choose Wix?</h2>
+        <p>Discover the powerful features that make Wix the perfect platform for your website</p>
+      </div>
+      
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>Drag & Drop Editor</h3>
+          <p>Create your website visually with an intuitive interface that requires no coding knowledge.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Mobile Optimization</h3>
+          <p>Automatically optimized for mobile devices to ensure your site looks great on any screen.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>AI-Powered Tools</h3>
+          <p>Leverage Wix ADI (Artificial Design Intelligence) to create custom designs based on your needs.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔌</div>
+          <h3>App Market</h3>
+          <p>Extend your website's functionality with hundreds of apps and integrations.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Security & Support</h3>
+          <p>Built-in security features and 24/7 customer support to help you succeed.</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>SEO Tools</h3>
+          <p>Comprehensive SEO tools to help your website rank higher in search results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="steps" id="steps">
+    <div class="container">
+      <div class="section-title">
+        <h2>How to Build Your Wix Website</h2>
+        <p>Follow these simple steps to create your professional website</p>
+      </div>
+      
+      <div class="step-container">
+        <div class="step-card">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Sign Up and Choose a Template</h3>
+            <p>Create a Wix account and browse through hundreds of professionally designed templates across various categories. Choose one that best fits your website's purpose and industry.</p>
+          </div>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Customize Your Design</h3>
+            <p>Use the drag-and-drop editor to customize your template. Add your own images, change colors and fonts, and arrange elements to match your brand identity.</p>
+          </div>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Add Content and Pages</h3>
+            <p>Create and organize your website's pages. Add text, images, videos, and other media to each page. Make sure your content is engaging and relevant to your visitors.</p>
+          </div>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">4</div>
+          <div class="step-content">
+            <h3>Add Advanced Features</h3>
+            <p>Enhance your website with features like contact forms, galleries, blogs, online stores, and more. Use Wix's built-in tools or add apps from the App Market.</p>
+          </div>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">5</div>
+          <div class="step-content">
+            <h3>Optimize for Mobile</h3>
+            <p>Use the mobile editor to ensure your website looks perfect on smartphones and tablets. Adjust layouts, font sizes, and spacing for optimal mobile experience.</p>
+          </div>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">6</div>
+          <div class="step-content">
+            <h3>Set Up SEO and Analytics</h3>
+            <p>Optimize your website for search engines using Wix's SEO tools. Connect Google Analytics to track visitor behavior and website performance.</p>
+          </div>
+        </div>
+        
+        <div class="step-card">
+          <div class="step-number">7</div>
+          <div class="step-content">
+            <h3>Publish and Promote</h3>
+            <p>Review your website, make final adjustments, and hit publish! Then use Wix's marketing tools to promote your new website to your target audience.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="tips" id="tips">
+    <div class="container">
+      <div class="section-title">
+        <h2>Tips & Tricks for Wix Success</h2>
+        <p>Expert advice to take your Wix website to the next level</p>
+      </div>
+      
+      <div class="tip-card">
+        <div class="tip-title">
+          <span class="tip-icon">💡</span>
+          <h3>Keep It Simple</h3>
+        </div>
+        <p>Don't overwhelm visitors with too many elements or animations. Focus on clean design and clear navigation to enhance user experience.</p>
+      </div>
+      
+      <div class="tip-card">
+        <div class="tip-title">
+          <span class="tip-icon">💡</span>
+          <h3>Optimize Images</h3>
+        </div>
+        <p>Compress images before uploading to improve loading speed. Use Wix's image editor to resize and optimize your photos for web use.</p>
+      </div>
+      
+      <div class="tip-card">
+        <div class="tip-title">
+          <span class="tip-icon">💡</span>
+          <h3>Use Wix Velo for Custom Functionality</h3>
+        </div>
+        <p>If you need advanced functionality, explore Wix Velo (formerly Corvid) to add custom code and create dynamic pages with database collections.</p>
+      </div>
+      
+      <div class="tip-card">
+        <div class="tip-title">
+          <span class="tip-icon">💡</span>
+          <h3>Test Across Devices</h3>
+        </div>
+        <p>Preview your website on different devices and browsers before publishing to ensure consistent performance and appearance.</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-title">
+        <h2>Frequently Asked Questions</h2>
+        <p>Find answers to common questions about developing Wix websites</p>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Is Wix completely free to use?</div>
+        <div class="faq-answer">
+          <p>Wix offers a free plan with basic features and Wix branding. For professional websites, you'll need a premium plan to remove Wix ads, connect a custom domain, and access advanced features.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Can I switch templates after I've started building?</div>
+        <div class="faq-answer">
+          <p>Unlike some website builders, Wix doesn't allow you to switch templates while preserving your content. It's best to carefully choose your template before investing significant time in customization.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Do I need coding knowledge to use Wix?</div>
+        <div class="faq-answer">
+          <p>No coding knowledge is required to create a Wix website. The drag-and-drop editor is designed for users of all skill levels. However, knowing some HTML/CSS can help with advanced customizations using Wix Velo.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">How do I make my Wix website rank higher in search engines?</div>
+        <div class="faq-answer">
+          <p>Use Wix's built-in SEO tools to optimize titles, descriptions, and headings. Create quality content, ensure mobile responsiveness, improve site speed, and build backlinks to improve your search engine rankings.</p>
+        </div>
+      </div>
+      
+      <div class="faq-item">
+        <div class="faq-question">Can I transfer my Wix website to another platform?</div>
+        <div class="faq-answer">
+          <p>Wix websites are built on a closed platform, making direct transfers difficult. You can export some content like blog posts, but the design and functionality would need to be recreated on the new platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="cta">
+    <div class="container">
+      <h2>Ready to Create Your Wix Website?</h2>
+      <p>Start building your professional website today and bring your vision to life!</p>
+      <a href="https://www.wix.com" class="btn cta-btn">Get Started with Wix</a>
+    </div>
+  </section>
+  
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-container">
+        <div class="footer-section">
+          <h3>WixGuide</h3>
+          <p>Your complete resource for building professional Wix websites without coding knowledge.</p>
+          <div class="social-links">
+            <a href="#" class="social-icon">f</a>
+            <a href="#" class="social-icon">t</a>
+            <a href="#" class="social-icon">in</a>
+            <a href="#" class="social-icon">ig</a>
+          </div>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Resources</h3>
+          <ul class="footer-links">
+            <li><a href="#">Wix Templates</a></li>
+            <li><a href="#">Design Tips</a></li>
+            <li><a href="#">SEO Guide</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul class="footer-links">
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Video Tutorials</a></li>
+            <li><a href="#">Community</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h3>Contact</h3>
+          <p>Email: info@wixguide.com</p>
+          <p>Phone: (123) 456-7890</p>
+          <p>Address: 123 Web Street, Internet City</p>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 WixGuide. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 70,
+            behavior: 'smooth'
+          });
+          
+          // Close mobile menu after clicking
+          if (navLinks.classList.contains('active')) {
+            navLinks.classList.remove('active');
+          }
+        }
+      });
+    });
+    
+    // FAQ accordion functionality
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    faqQuestions.forEach(question => {
+      question.addEventListener('click', () => {
+        const answer = question.nextElementSibling;
+        
+        // Toggle active class
+        question.classList.toggle('active');
+        
+        // Toggle display of answer
+        if (question.classList.contains('active')) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+          answer.style.maxHeight = null;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
